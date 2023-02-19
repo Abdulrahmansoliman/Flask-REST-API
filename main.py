@@ -10,40 +10,45 @@ db = SQLAlchemy(app)
 
 
 class VideoModel(db.Model):
-    id = db.colomn(db.Integer, primary_key=True)
-    name = db.colomn(db.String(100), nullable=False)
-    views = db.colomn(db.Integer, nullable=False)
-    likes = db.colomn(db.Integer, nullable=False)
-
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    views = db.Column(db.Integer, nullable=False)
+    likes = db.Column(db.Integer, nullable=False)
+    
     def __repr__(self):
-        return f"Video(name = {name}, views = {views}, likes = {likes})"
+        return "Video(name = " + self.name + ", views = " + str(self.views) + ", likes = " + str(self.likes) + ")"
+
 
 video_put_args = reqparse.RequestParser()
 video_put_args.add_argument("name", type=str, help="Name of the video is required", required=True)
 video_put_args.add_argument("views", type=int, help="Views of the video")
-video_put_args.add_argument("likes", type=int, help="Likes on the video")
+video_put_args.add_argument("likes", type=int, help="Likes on the video")   
 
-videos = {"tim":{"age":19 , "gender":"male"},
-         "John":{"age":21, "gender":"female"},
-         }
+resource_field = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'views': fields.Integer,
+    'likes': fields.Integer
+}
 
-def abort_if_video_id_doesnt_exist(video_id):  
-    if video_id not in videos:
-        abort(404, message="Could not find video...")
-
-def abort_if_video_exists(video_id):
-    if video_id in videos:
-        abort(409, message="Video already exists with that ID...")        
 class Video(Resource):
+    @marshal_with(resource_field)
     def get(self, video_id):
-        abort_if_video_id_doesnt_exist(video_id)
-        return videos[video_id]
-
+        result = VideoModel.query.filter_by(id=video_id).first()
+        if not result:
+            abort(404, message="Could not find video with that id")
+        return result
+    
+    @marshal_with(resource_field)
     def put(self, video_id):
-        abort_if_video_exists(video_id)
         args = video_put_args.parse_args()
-        videos[video_id]=args    
-        return(args, 201)
+        result = VideoModel.query.filter_by(id=video_id).first()
+        if result:
+            abort(409, message="Video id taken...")
+        video = VideoModel(id=video_id, name=args['name'], views=args['views'], likes=args['likes']) 
+        db.session.add(video)
+        db.session.commit()   
+        return(video, 201)
     
     def delete (self, video_id):
         abort_if_video_id_doesnt_exist(video_id)
@@ -53,4 +58,5 @@ class Video(Resource):
 api.add_resource(Video, "/video/<int:video_id>")
 
 if __name__ == '__main__':
+    db.create_all() 
     app.run(debug=True)
