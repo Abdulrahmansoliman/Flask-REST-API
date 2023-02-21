@@ -39,11 +39,9 @@ resource_field = {
 class Video(Resource):
     @marshal_with(resource_field)
     def get(self, video_id):
-        result = VideoModel.query.filter_by(id=video_id).first()
-        if not result:
-            abort(404, message="Could not find video with that id")
-        return result
+        return VideoModel.query.filter_by(id=video_id).first_or_404("Could not find video with that id")
     
+       
     @marshal_with(resource_field)
     def put(self, video_id):
         args = video_put_args.parse_args()
