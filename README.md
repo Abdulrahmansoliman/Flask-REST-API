@@ -22,15 +22,19 @@ The repository includes the following files:
 
 To set up the Flask REST API on your local machine, follow these steps:
 
-Clone this repository to your machine using git clone.
+```
 
-Navigate to the root directory of the repository and create a virtual environment by running python -m venv venv.
+1. Clone this repository to your machine using git clone.
 
-Activate the virtual environment by running venv\Scripts\activate (Windows) or source venv/bin/activate (Mac/Linux).
+2. Navigate to the root directory of the repository and create a virtual environment by running python -m venv venv.
 
-Install the required Python libraries by running pip install -r requirements.txt.
+3. Activate the virtual environment by running venv\Scripts\activate (Windows) or source venv/bin/activate (Mac/Linux).
 
-Start the Flask development server by running python app.py.
+4. Install the required Python libraries by running pip install -r requirements.txt.
+
+5. Start the Flask development server by running python app.py.
+
+```
 
 Once the server is running, you can access the API endpoints by sending HTTP requests to http://127.0.0.1:5000/.
 
