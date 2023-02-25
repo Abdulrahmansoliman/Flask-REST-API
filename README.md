@@ -6,13 +6,17 @@ The API allows for the creation, retrieval, updating, and deletion of videos.
 
 The repository includes the following files:
 
-``` app.py: the main code file for the API
+```
 
-requirements.txt: a list of the Python libraries required for the API
+1. app.py: the main code file for the API
 
-database.db: a SQLite database used to store video data
+2. requirements.txt: a list of the Python libraries required for the API
 
-README.md: a file containing instructions for setting up the API
+3. database.db: a SQLite database used to store video data
+
+4. README.md: a file containing instructions for setting up the API
+
+```
 
 ## Installation and Setup
 
