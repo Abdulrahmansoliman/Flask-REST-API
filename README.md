@@ -8,7 +8,7 @@ The repository includes the following files:
 
 ```
 
-1. **app.py**: the main code file for the API
+1. __app.py__: the main code file for the API
 
 2. requirements.txt: a list of the Python libraries required for the API
 
