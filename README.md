@@ -42,13 +42,17 @@ Once the server is running, you can access the API endpoints by sending HTTP req
 
 The API allows for the following HTTP requests:
 
-GET /video/<int:video_id>: retrieves a video with the specified ID.
+```
 
-PUT /video/<int:video_id>: creates a new video with the specified ID and data.
+1. GET /video/<int:video_id>: retrieves a video with the specified ID.
 
-PATCH /video/<int:video_id>: updates an existing video with the specified ID and data.
+2. PUT /video/<int:video_id>: creates a new video with the specified ID and data.
 
-DELETE /video/<int:video_id>: deletes the video with the specified ID.
+3. PATCH /video/<int:video_id>: updates an existing video with the specified ID and data.
+
+4. DELETE /video/<int:video_id>: deletes the video with the specified ID.
+
+```
 
 To test the API, you can use the requests library in Python or a tool like Postman.
 In the app.py file, you will find a section of commented-out code that demonstrates how to use requests to create and retrieve videos.
