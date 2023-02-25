@@ -6,7 +6,7 @@ The API allows for the creation, retrieval, updating, and deletion of videos.
 
 The repository includes the following files:
 
-app.py: the main code file for the API
+'app.py': the main code file for the API
 
 requirements.txt: a list of the Python libraries required for the API
 
